@@ -9,7 +9,7 @@ class Users extends Component{
         <td>{user.nama}</td>
         <td>{user.email}</td>
         <td>{user.hp}</td>
-        <td className="delete" key={user.key} onClick={() => this.props.deleteUser(user.key)}> X </td>
+        <td className="delete" key={user.key} onClick={() => this.props.deleteUser(user.id)}> X </td>
       </tr>
     )
   }
@@ -18,7 +18,21 @@ class Users extends Component{
     const listUser = userEntries.map(this.createUser)
 
   return (
-    <tr className="the-users">{listUser}</tr>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nama</th>
+          <th>Email</th>
+          <th>Nomor Handphone</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody className='the-users'>
+        {listUser}
+      </tbody>
+    </table>
+    
   )
 }
 }

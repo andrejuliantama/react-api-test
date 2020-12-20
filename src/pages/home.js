@@ -9,7 +9,7 @@ import Users from '../components/user.js';
 class Home extends Component {
 	state = {
 		userList: [],
-		currUser: {id: 0, nama: '', email: '', hp: '', key: '' },
+		currUser: {id: 0, nama: '', email: '', hp: ''},
 		id: 0,
 		currID: 0,
 		currNama: '',
@@ -31,12 +31,13 @@ class Home extends Component {
 
 
 
-	handleID() {
-		const tempId = this.state.id + 1
+	handleID(num) {
+		const tempId = this.state.id + num
 		this.setState({
 			id: tempId,
 			currID: tempId
 		})
+		console.log('id sekarang'+ this.state.id)
 	}
 
 	handleNama(e) {
@@ -58,31 +59,33 @@ class Home extends Component {
 	}
 
 	handleUser() {
-		this.handleID()
-		const temp = { id: this.state.currID, nama: this.state.currNama, email: this.state.currEmail, hp: this.state.currHP, key: Date.now() }
+		const temp = { id: this.state.currID, nama: this.state.currNama, email: this.state.currEmail, hp: this.state.currHP }
 		this.setState({
-			currUser: temp,
+			currUser: temp
 		})
-		console.log(temp)
+		console.log(this.state.currUser);
 	}
 
-	addUser = (e) => {
+	addUser = async (e) => {
 		e.preventDefault()
-		
-		this.handleUser()
+		await this.handleUser()
 		const newUser = this.state.currUser
 		const users = [...this.state.userList, newUser]
+		console.log(users)
 		this.setState({
 			userList: users,
-			currUser: { id: '', nama: '', email: '', hp: '', key: '' }
+			currUser: { id: this.state.id, nama: '', email: '', hp: ''}
 		})
 		console.log('User Added')
+		console.log('userlist'+this.state.userList)
+		this.handleID(1)
 	}
 
-	deleteUser = (key) => {
+	deleteUser = (id) => {
 		const filteredUser = this.state.userList.filter(user => {
-			return user.key !== key
+			return user.id !== id
 		})
+		console.log(filteredUser)
 		this.setState({ 
 			userList: filteredUser 
 		})
@@ -127,10 +130,6 @@ class Home extends Component {
 	}
 
 	httpGetUser = async (e) => {
-		let data = {
-			name: "Joni",
-			job: "Rebahan"
-		}
 
 		let config = {
 			method: 'get',
@@ -234,7 +233,6 @@ class Home extends Component {
 					entries={this.state.userList}
 					deleteUser={this.deleteUser}
 				/>
-
 
 			<div className="title">HTTP Buttons</div>
 			<div className="button-container">

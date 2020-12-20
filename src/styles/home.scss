@@ -27,6 +27,24 @@
     cursor: pointer;
   }
 
+  table{
+    width: 50%;
+
+    th{
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    td{
+      padding-top: 1vh;
+      padding-left: 1vh;
+      font-size: 20px;
+      font-weight: normal;
+      text-align: center;
+    }
+  }	
+
   .button-container{
     display: flex;
     flex-direction: row;
