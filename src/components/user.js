@@ -26,6 +26,7 @@ class Users extends Component{
           <th>Email</th>
           <th>Nomor Handphone</th>
           <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody className='the-users'>

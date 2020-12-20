@@ -70,12 +70,14 @@ class Home extends Component {
 		e.preventDefault()
 		await this.handleUser()
 		const newUser = this.state.currUser
-		const users = [...this.state.userList, newUser]
-		console.log(users)
-		this.setState({
-			userList: users,
-			currUser: { id: this.state.id, nama: '', email: '', hp: ''}
-		})
+		if (newUser.nama !== '' && newUser.email !== '' && newUser.hp !== ''){
+			const users = [...this.state.userList, newUser]
+			console.log(users)
+			this.setState({
+				userList: users,
+				currUser: { id: this.state.id, nama: '', email: '', hp: ''}
+			})
+		}
 		console.log('User Added')
 		console.log('userlist'+this.state.userList)
 		this.handleID(1)
@@ -234,14 +236,14 @@ class Home extends Component {
 					deleteUser={this.deleteUser}
 				/>
 
-			<div className="title">HTTP Buttons</div>
-			<div className="button-container">
+			<div className="title mt-4">HTTP Buttons</div>
+			<div className="button-container mt-2">
 				<button onClick={(e) => { this.httpPostUser(e) }}>Post User</button>
 				<button onClick={(e) => { this.httpGetUser(e) }}>Get User</button>
 				<button onClick={(e) => { this.httpUpdateUser(e) }}>Update User</button>
 				<button onClick={(e) => { this.httpDeleteUser(e) }}>Delete User</button>
 			</div>
-			<div className="message-responses">
+			<div className="message-responses mt-4">
 				{this.state.message}
 			</div>
 
