@@ -29,11 +29,13 @@
 
   table{
     width: 50%;
+    border:1px solid black;
 
     th{
       font-size: 24px;
       font-weight: bold;
       text-align: center;
+      border-bottom:1px solid black;
     }
 
     td{
@@ -60,6 +62,24 @@
 
   }
 
+  button{				
+    color: white;
+    font-weight: bold;
+    background-color: black;
+    border-radius: 10px;
+    border-color: black;
+    padding: 2vh;
+    cursor: pointer;
+    border: 2;
+    font-size: 12px;
+  }
+
+  button:hover{
+    color: black;
+    background-color: white;
+    transition-duration: 0.5s;
+  }
+
   //base style
   .mt-2{
     margin-top: 2vh;
@@ -67,5 +87,13 @@
 
   .mt-4{
     margin-top: 4vh;
+  }
+
+  .mr-2{
+    margin-right: 2vh;
+  }
+
+  .ml-2{
+    margin-left: 2vh;
   }
 }

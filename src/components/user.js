@@ -18,7 +18,7 @@ class Users extends Component{
     const listUser = userEntries.map(this.createUser)
 
   return (
-    <table>
+    <table className="mt-4">
       <thead>
         <tr>
           <th>ID</th>
