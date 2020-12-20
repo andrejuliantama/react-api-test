@@ -4,7 +4,16 @@ import Axios from 'axios';
 import UserList from '../components/userList.js';
 import Users from '../components/user.js';
 
-
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
 
 class Home extends Component {
 	state = {
@@ -15,20 +24,10 @@ class Home extends Component {
 		currNama: '',
 		currEmail: '',
 		currHP: '',
-		message: "*Initial Message Value*"
+		message: "*Initial Message Value*",
+		editModalIsOpen: false
 
 	}
-	// const [id, setId] = useState(0);
-
-	// const [userList, setUserList] = useState([]);
-	// const [currUser, setCurrUser] = useState({ id: 0, nama: '', email: '', hp: '', key: '' })
-
-
-	// const [currID, setCurrID] = useState(0)
-	// const [currNama, setCurrNama] = useState("")
-	// const [currEmail, setCurrEmail] = useState("")
-	// const [currHP, setCurrHP] = useState("")
-
 
 
 	handleID(num) {
@@ -92,6 +91,38 @@ class Home extends Component {
 			userList: filteredUser 
 		})
 	}
+
+	editNama = (nama,id) =>{
+    console.log("nama:"+this.state.userList);
+    const list = this.state.userList;
+    list.map(user=>{      
+      if(user.id===id){
+        console.log(user.id +"    "+id)
+        user.nama= nama;
+      }
+    })
+    this.setState({
+      items: list
+    })
+    
+   
+  }
+
+	
+
+  openModal = (id) => {
+		this.setState({
+			editModalIsOpen: true
+		})  
+	}
+
+ 
+  closeModal(){
+		this.setState({
+			editModalIsOpen: false
+		})
+  }
+
 
 	//AXIOS POST GET UPDATE DELETE
 	// const [message, setMessage] = useState("*Initial Message Value*");
@@ -220,7 +251,6 @@ class Home extends Component {
 	}
 
 	render(){
-
 	return (
 		<div className="home">
 			<div className="title">Form</div>
@@ -234,6 +264,7 @@ class Home extends Component {
 				<Users
 					entries={this.state.userList}
 					deleteUser={this.deleteUser}
+					editNama={this.editNama}
 				/>
 
 			<div className="title mt-4">HTTP Buttons</div>
@@ -246,6 +277,8 @@ class Home extends Component {
 			<div className="message-responses mt-4">
 				{this.state.message}
 			</div>
+
+			
 
 
 		</div>
