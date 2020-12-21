@@ -8,8 +8,8 @@ class Users extends Component{
       <tr>
         <td>{user.id}</td>
         <td ><input type="text" id={user.id} value={user.nama} onChange={(e) => {this.props.editNama(e.target.value,user.id)}}/></td>
-        <td >{user.email}</td>
-        <td >{user.hp}</td>
+        <td ><input type="text" id={user.id} value={user.email} onChange={(e) => {this.props.editEmail(e.target.value,user.id)}}/></td>
+        <td ><input type="text" id={user.id} value={user.hp} onChange={(e) => {this.props.editHP(e.target.value,user.id)}}/></td>
         <td className="delete" id={user.id} onClick={() => this.props.deleteUser(user.id)}> X </td>
       </tr>
     )

@@ -25,7 +25,6 @@ class Home extends Component {
 		currEmail: '',
 		currHP: '',
 		message: "*Initial Message Value*",
-		editModalIsOpen: false
 
 	}
 
@@ -104,24 +103,38 @@ class Home extends Component {
     this.setState({
       items: list
     })
-    
-   
+	}
+	
+	editEmail = (email,id) =>{
+    console.log("email:"+this.state.userList);
+    const list = this.state.userList;
+    list.map(user=>{      
+      if(user.id===id){
+        console.log(user.id +"    "+id)
+        user.email= email;
+      }
+    })
+    this.setState({
+      items: list
+    })
+	}
+	
+	editHP = (hp,id) =>{
+    console.log(this.state.userList);
+    const list = this.state.userList;
+    list.map(user=>{      
+      if(user.id===id){
+        console.log(user.id +"    "+id)
+        user.hp= hp;
+      }
+    })
+    this.setState({
+      items: list
+    })
   }
 
 	
 
-  openModal = (id) => {
-		this.setState({
-			editModalIsOpen: true
-		})  
-	}
-
- 
-  closeModal(){
-		this.setState({
-			editModalIsOpen: false
-		})
-  }
 
 
 	//AXIOS POST GET UPDATE DELETE
@@ -265,6 +278,8 @@ class Home extends Component {
 					entries={this.state.userList}
 					deleteUser={this.deleteUser}
 					editNama={this.editNama}
+					editEmail={this.editEmail}
+					editHP={this.editHP}
 				/>
 
 			<div className="title mt-4">HTTP Buttons</div>
